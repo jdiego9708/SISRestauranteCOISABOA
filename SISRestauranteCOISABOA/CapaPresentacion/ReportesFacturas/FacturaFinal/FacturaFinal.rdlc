@@ -9,7 +9,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Restaurante Casa Grande</Value>
+                <Value>Restaurante COISA BOA</Value>
                 <Style>
                   <FontFamily>Segoe UI</FontFamily>
                   <FontSize>12pt</FontSize>
@@ -43,7 +43,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Nit 1053803248-1</Value>
+                <Value>Nit 401222021</Value>
                 <Style>
                   <FontFamily>Segoe UI</FontFamily>
                   <FontSize>8pt</FontSize>
@@ -58,22 +58,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Regimen común</Value>
-                <Style>
-                  <FontFamily>Segoe UI</FontFamily>
-                  <FontSize>8pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Impuesto nacional al consumo</Value>
+                <Value>Regimen General</Value>
                 <Style>
                   <FontFamily>Segoe UI</FontFamily>
                   <FontSize>8pt</FontSize>

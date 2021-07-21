@@ -61,7 +61,7 @@ namespace CapaPresentacion.Formularios.FormsEstadisticas
             this.groupBox1.Controls.Add(this.date1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1070, 76);
+            this.groupBox1.Size = new System.Drawing.Size(1077, 76);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Búsqueda por rango de fechas";
@@ -69,6 +69,8 @@ namespace CapaPresentacion.Formularios.FormsEstadisticas
             // chkDeletePedidos
             // 
             this.chkDeletePedidos.AutoSize = true;
+            this.chkDeletePedidos.Checked = true;
+            this.chkDeletePedidos.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDeletePedidos.Location = new System.Drawing.Point(382, 16);
             this.chkDeletePedidos.Name = "chkDeletePedidos";
             this.chkDeletePedidos.Size = new System.Drawing.Size(234, 21);
@@ -96,6 +98,8 @@ namespace CapaPresentacion.Formularios.FormsEstadisticas
             // chkInfoPagos
             // 
             this.chkInfoPagos.AutoSize = true;
+            this.chkInfoPagos.Checked = true;
+            this.chkInfoPagos.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkInfoPagos.Location = new System.Drawing.Point(790, 46);
             this.chkInfoPagos.Name = "chkInfoPagos";
             this.chkInfoPagos.Size = new System.Drawing.Size(225, 21);
@@ -116,6 +120,8 @@ namespace CapaPresentacion.Formularios.FormsEstadisticas
             // chkInfoNomina
             // 
             this.chkInfoNomina.AutoSize = true;
+            this.chkInfoNomina.Checked = true;
+            this.chkInfoNomina.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkInfoNomina.Location = new System.Drawing.Point(622, 16);
             this.chkInfoNomina.Name = "chkInfoNomina";
             this.chkInfoNomina.Size = new System.Drawing.Size(162, 21);
@@ -126,6 +132,8 @@ namespace CapaPresentacion.Formularios.FormsEstadisticas
             // chkInfoGastos
             // 
             this.chkInfoGastos.AutoSize = true;
+            this.chkInfoGastos.Checked = true;
+            this.chkInfoGastos.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkInfoGastos.Location = new System.Drawing.Point(622, 46);
             this.chkInfoGastos.Name = "chkInfoGastos";
             this.chkInfoGastos.Size = new System.Drawing.Size(158, 21);
@@ -172,7 +180,7 @@ namespace CapaPresentacion.Formularios.FormsEstadisticas
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbReporte.Location = new System.Drawing.Point(12, 94);
             this.gbReporte.Name = "gbReporte";
-            this.gbReporte.Size = new System.Drawing.Size(1070, 281);
+            this.gbReporte.Size = new System.Drawing.Size(1077, 281);
             this.gbReporte.TabIndex = 1;
             this.gbReporte.TabStop = false;
             this.gbReporte.Text = "Reporte";
@@ -182,7 +190,7 @@ namespace CapaPresentacion.Formularios.FormsEstadisticas
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1094, 387);
+            this.ClientSize = new System.Drawing.Size(1101, 387);
             this.Controls.Add(this.gbReporte);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
