@@ -69,6 +69,8 @@ namespace CapaPresentacion.Formularios.FormsEstadisticas
             // chkDeletePedidos
             // 
             this.chkDeletePedidos.AutoSize = true;
+            this.chkDeletePedidos.Checked = true;
+            this.chkDeletePedidos.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDeletePedidos.Location = new System.Drawing.Point(382, 16);
             this.chkDeletePedidos.Name = "chkDeletePedidos";
             this.chkDeletePedidos.Size = new System.Drawing.Size(234, 21);
@@ -96,6 +98,8 @@ namespace CapaPresentacion.Formularios.FormsEstadisticas
             // chkInfoPagos
             // 
             this.chkInfoPagos.AutoSize = true;
+            this.chkInfoPagos.Checked = true;
+            this.chkInfoPagos.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkInfoPagos.Location = new System.Drawing.Point(790, 46);
             this.chkInfoPagos.Name = "chkInfoPagos";
             this.chkInfoPagos.Size = new System.Drawing.Size(225, 21);
@@ -116,6 +120,8 @@ namespace CapaPresentacion.Formularios.FormsEstadisticas
             // chkInfoNomina
             // 
             this.chkInfoNomina.AutoSize = true;
+            this.chkInfoNomina.Checked = true;
+            this.chkInfoNomina.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkInfoNomina.Location = new System.Drawing.Point(622, 16);
             this.chkInfoNomina.Name = "chkInfoNomina";
             this.chkInfoNomina.Size = new System.Drawing.Size(162, 21);
@@ -126,6 +132,8 @@ namespace CapaPresentacion.Formularios.FormsEstadisticas
             // chkInfoGastos
             // 
             this.chkInfoGastos.AutoSize = true;
+            this.chkInfoGastos.Checked = true;
+            this.chkInfoGastos.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkInfoGastos.Location = new System.Drawing.Point(622, 46);
             this.chkInfoGastos.Name = "chkInfoGastos";
             this.chkInfoGastos.Size = new System.Drawing.Size(158, 21);

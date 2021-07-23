@@ -33,6 +33,7 @@
             this.btnAdministracion = new System.Windows.Forms.Button();
             this.btnReservas = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnInsumos = new System.Windows.Forms.Button();
             this.lblMistico = new System.Windows.Forms.Label();
             this.btnVentas = new System.Windows.Forms.Button();
             this.btnMesasPedidos = new System.Windows.Forms.Button();
@@ -44,7 +45,6 @@
             this.btnUsuario = new System.Windows.Forms.Button();
             this.btnAdministracionAvanzada = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnInsumos = new System.Windows.Forms.Button();
             this.panelBotones.SuspendLayout();
             this.panelBarraSuperior.SuspendLayout();
             this.SuspendLayout();
@@ -116,16 +116,34 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "® Copyright Juan Diego \r\nDuque -\r\njdiego9708@gmail.com";
             // 
+            // btnInsumos
+            // 
+            this.btnInsumos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInsumos.FlatAppearance.BorderSize = 0;
+            this.btnInsumos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInsumos.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInsumos.ForeColor = System.Drawing.Color.White;
+            this.btnInsumos.Image = ((System.Drawing.Image)(resources.GetObject("btnInsumos.Image")));
+            this.btnInsumos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInsumos.Location = new System.Drawing.Point(-3, 307);
+            this.btnInsumos.Name = "btnInsumos";
+            this.btnInsumos.Size = new System.Drawing.Size(124, 33);
+            this.btnInsumos.TabIndex = 11;
+            this.btnInsumos.Text = "Insumos";
+            this.btnInsumos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnInsumos.UseVisualStyleBackColor = true;
+            this.btnInsumos.Visible = false;
+            // 
             // lblMistico
             // 
             this.lblMistico.AutoSize = true;
             this.lblMistico.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMistico.ForeColor = System.Drawing.Color.White;
-            this.lblMistico.Location = new System.Drawing.Point(3, 6);
+            this.lblMistico.Location = new System.Drawing.Point(15, 7);
             this.lblMistico.Name = "lblMistico";
-            this.lblMistico.Size = new System.Drawing.Size(118, 21);
+            this.lblMistico.Size = new System.Drawing.Size(93, 21);
             this.lblMistico.TabIndex = 10;
-            this.lblMistico.Text = "CASA GRANDE";
+            this.lblMistico.Text = "COISA BOA";
             // 
             // btnVentas
             // 
@@ -282,30 +300,11 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel1.Location = new System.Drawing.Point(123, 34);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(699, 394);
             this.panel1.TabIndex = 2;
-            // 
-            // btnInsumos
-            // 
-            this.btnInsumos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnInsumos.FlatAppearance.BorderSize = 0;
-            this.btnInsumos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInsumos.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsumos.ForeColor = System.Drawing.Color.White;
-            this.btnInsumos.Image = ((System.Drawing.Image)(resources.GetObject("btnInsumos.Image")));
-            this.btnInsumos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInsumos.Location = new System.Drawing.Point(-3, 307);
-            this.btnInsumos.Name = "btnInsumos";
-            this.btnInsumos.Size = new System.Drawing.Size(124, 33);
-            this.btnInsumos.TabIndex = 11;
-            this.btnInsumos.Text = "Insumos";
-            this.btnInsumos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnInsumos.UseVisualStyleBackColor = true;
-            this.btnInsumos.Visible = false;
             // 
             // FrmPrincipal
             // 
@@ -319,7 +318,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmPrincipal";
-            this.Text = "Restaurante Casa Grande (Formulario principal)";
+            this.Text = "Restaurante COISA BOA (Formulario principal)";
             this.panelBotones.ResumeLayout(false);
             this.panelBotones.PerformLayout();
             this.panelBarraSuperior.ResumeLayout(false);

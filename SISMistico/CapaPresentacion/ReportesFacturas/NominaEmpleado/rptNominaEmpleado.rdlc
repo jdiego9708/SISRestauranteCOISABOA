@@ -12,7 +12,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Restaurante Casa Grande - Recibo de caja</Value>
+                    <Value>Restaurante COISA BOA- Recibo de caja</Value>
                     <Style>
                       <FontFamily>Segoe UI</FontFamily>
                       <FontSize>11pt</FontSize>
@@ -149,7 +149,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Nit 1053803248-1</Value>
+                    <Value>Nit 401222021</Value>
                     <Style>
                       <FontFamily>Segoe UI</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -164,7 +164,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Regimen común</Value>
+                    <Value>Regimen general</Value>
                     <Style>
                       <FontFamily>Segoe UI</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -179,7 +179,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Impuesto nacional al consumo</Value>
+                    <Value>Av. Bani esquina Av Los Cusis</Value>
                     <Style>
                       <FontFamily>Segoe UI</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -194,7 +194,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Dirección Calle 65 A# 23 B 40 </Value>
+                    <Value>Coisa Boa Café-Resto 75537411</Value>
                     <Style>
                       <FontFamily>Segoe UI</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -209,22 +209,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Barrio palermo - 3045401462 - 8875609 - 8909664</Value>
-                    <Style>
-                      <FontFamily>Segoe UI</FontFamily>
-                      <FontSize>8pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>MANIZALES</Value>
+                    <Value>Santa Cruz</Value>
                     <Style>
                       <FontFamily>Segoe UI</FontFamily>
                       <FontSize>8pt</FontSize>
