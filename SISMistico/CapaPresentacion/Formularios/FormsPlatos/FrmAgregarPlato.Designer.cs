@@ -164,6 +164,7 @@
             this.chkIngredientes.TabIndex = 28;
             this.chkIngredientes.Text = "Habilitar ingredientes";
             this.chkIngredientes.UseVisualStyleBackColor = true;
+            this.chkIngredientes.Visible = false;
             // 
             // groupBox1
             // 
@@ -198,6 +199,8 @@
             // chkCarta
             // 
             this.chkCarta.AutoSize = true;
+            this.chkCarta.Checked = true;
+            this.chkCarta.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkCarta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.chkCarta.Location = new System.Drawing.Point(196, 129);
             this.chkCarta.Name = "chkCarta";
@@ -205,6 +208,7 @@
             this.chkCarta.TabIndex = 32;
             this.chkCarta.Text = "Plato a la carta";
             this.chkCarta.UseVisualStyleBackColor = true;
+            this.chkCarta.Visible = false;
             // 
             // groupBox4
             // 
