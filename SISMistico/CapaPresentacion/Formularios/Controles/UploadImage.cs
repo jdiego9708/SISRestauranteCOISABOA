@@ -97,10 +97,9 @@ namespace CapaPresentacion.Formularios.Controles
             this.txtImagen.Text = nombre_imagen;
         }
 
-        public void AsignarImagen(string nombre_imagen, string appKey)
+        public void AsignarImagen(string nombre_imagen)
         {
-            string rutaOr;
-            Image Imagen = Imagenes.ObtenerImagen(appKey, nombre_imagen, out rutaOr);
+            Image Imagen = Imagenes.ObtenerImagen(nombre_imagen, out string rutaOr);
             this.pxImagen.Image = Imagen;
             this.pxImagen.SizeMode = PictureBoxSizeMode.StretchImage;
             this.txtImagen.Text = nombre_imagen;
@@ -131,7 +130,7 @@ namespace CapaPresentacion.Formularios.Controles
                 //Creo un objeto de tipo OpenFileDialog y lo instancio
                 OpenFileDialog archivo = new OpenFileDialog();
                 //Esta linea es para que solo se puedan visualizar los archivos con esta extension
-                archivo.Filter = "Documentos válidos|*.jpg;*.png;*.jfif";
+                archivo.Filter = "Documentos válidos|*.jpg;*.png;*.jfif;*.jpeg;";
                 //Lo abro como un Dialog
                 DialogResult result = archivo.ShowDialog();
                 if (result == DialogResult.OK)

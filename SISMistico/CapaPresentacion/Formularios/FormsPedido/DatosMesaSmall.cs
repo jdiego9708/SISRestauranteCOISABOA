@@ -71,10 +71,11 @@ namespace CapaPresentacion.Formularios.FormsPedido
                 int id_tipo = Convert.ToInt32(row["Id_tipo"]);
                 string tipo = Convert.ToString(row["Tipo"]);
                 string nombre = Convert.ToString(row["Nombre"]);
+                int cantidad = Convert.ToInt32(row["Cantidad"]);
 
                 if (tipo.Equals("PLATO"))
                 {
-                    info.Append("-" + nombre).Append(": ").Append(Environment.NewLine);
+                    info.Append($"-{nombre} ({cantidad})").Append(Environment.NewLine);
 
                     DataRow[] find = dtDetallePlatosPedido.Select(string.Format("Id_tipo = {0}", id_tipo));
                     if (find.Length > 0)
@@ -87,6 +88,10 @@ namespace CapaPresentacion.Formularios.FormsPedido
                     }
 
                     //row["Nombre"] = info.ToString();
+                }
+                else
+                {
+                    info.Append($"-{nombre} ({cantidad})").Append(Environment.NewLine);
                 }
             }
 

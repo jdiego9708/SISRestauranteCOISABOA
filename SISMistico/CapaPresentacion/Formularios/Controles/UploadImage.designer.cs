@@ -86,7 +86,6 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnLimpiar.BackColor = System.Drawing.Color.White;
             this.btnLimpiar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLimpiar.BackgroundImage")));
             this.btnLimpiar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -99,7 +98,7 @@
             this.btnLimpiar.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.ForeColor = System.Drawing.Color.Gray;
             this.btnLimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLimpiar.Location = new System.Drawing.Point(252, 118);
+            this.btnLimpiar.Location = new System.Drawing.Point(174, 118);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(35, 35);
             this.btnLimpiar.TabIndex = 9;
@@ -109,7 +108,6 @@
             // 
             // btnAgregarComentario
             // 
-            this.btnAgregarComentario.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnAgregarComentario.BackColor = System.Drawing.Color.White;
             this.btnAgregarComentario.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAgregarComentario.BackgroundImage")));
             this.btnAgregarComentario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -129,10 +127,10 @@
             this.btnAgregarComentario.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolTip1.SetToolTip(this.btnAgregarComentario, "Agregar comentario");
             this.btnAgregarComentario.UseVisualStyleBackColor = false;
+            this.btnAgregarComentario.Visible = false;
             // 
             // btnQuitar
             // 
-            this.btnQuitar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnQuitar.BackColor = System.Drawing.Color.White;
             this.btnQuitar.BackgroundImage = global::CapaPresentacion.Properties.Resources.negative;
             this.btnQuitar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -151,6 +149,7 @@
             this.btnQuitar.TabIndex = 11;
             this.toolTip1.SetToolTip(this.btnQuitar, "Quitar imagen");
             this.btnQuitar.UseVisualStyleBackColor = false;
+            this.btnQuitar.Visible = false;
             // 
             // btnScreenShot
             // 
@@ -167,15 +166,15 @@
             this.btnScreenShot.Image = ((System.Drawing.Image)(resources.GetObject("btnScreenShot.Image")));
             this.btnScreenShot.Location = new System.Drawing.Point(256, 23);
             this.btnScreenShot.Name = "btnScreenShot";
-            this.btnScreenShot.Size = new System.Drawing.Size(83, 37);
+            this.btnScreenShot.Size = new System.Drawing.Size(0, 37);
             this.btnScreenShot.TabIndex = 12;
             this.btnScreenShot.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolTip1.SetToolTip(this.btnScreenShot, "Tome una captura de pantalla");
             this.btnScreenShot.UseVisualStyleBackColor = false;
+            this.btnScreenShot.Visible = false;
             // 
             // btnConfig
             // 
-            this.btnConfig.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnConfig.BackColor = System.Drawing.Color.White;
             this.btnConfig.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnConfig.BackgroundImage")));
             this.btnConfig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -188,25 +187,24 @@
             this.btnConfig.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfig.ForeColor = System.Drawing.Color.Gray;
             this.btnConfig.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConfig.Location = new System.Drawing.Point(172, 118);
+            this.btnConfig.Location = new System.Drawing.Point(251, 118);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(34, 35);
             this.btnConfig.TabIndex = 13;
             this.btnConfig.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolTip1.SetToolTip(this.btnConfig, "Configuraciones de imagen");
             this.btnConfig.UseVisualStyleBackColor = false;
+            this.btnConfig.Visible = false;
             // 
             // txtImagen
             // 
-            this.txtImagen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtImagen.BackColor = System.Drawing.Color.White;
             this.txtImagen.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtImagen.ForeColor = System.Drawing.Color.Gray;
             this.txtImagen.Location = new System.Drawing.Point(174, 66);
             this.txtImagen.Multiline = true;
             this.txtImagen.Name = "txtImagen";
-            this.txtImagen.Size = new System.Drawing.Size(165, 46);
+            this.txtImagen.Size = new System.Drawing.Size(76, 46);
             this.txtImagen.TabIndex = 8;
             // 
             // UploadImage
@@ -227,7 +225,7 @@
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UploadImage";
-            this.Size = new System.Drawing.Size(342, 156);
+            this.Size = new System.Drawing.Size(258, 156);
             ((System.ComponentModel.ISupportInitialize)(this.pxImagen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -48,7 +48,7 @@ namespace CapaPresentacion.Formularios.Controles
             Image Imagen = Resources.SIN_IMAGENES;
             if (!nombre_imagen.Equals("SIN IMAGEN") & !nombre_imagen.Equals(""))
             {
-                Imagen = Imagenes.ObtenerImagen("RUTAIMAGES", nombre_imagen, out rutaOrigen);
+                Imagen = Imagenes.ObtenerImagen(nombre_imagen, out rutaOrigen);
             }
 
             this.pxImagen.Image = Imagen;

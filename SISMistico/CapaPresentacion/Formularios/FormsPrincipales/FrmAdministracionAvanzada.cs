@@ -13,6 +13,7 @@ using System.Data.SqlClient;
 using MetroFramework.Controls;
 
 using CapaPresentacion.Formularios.FormsPrincipales.FormsConfiguracion;
+using CapaPresentacion.Servicios;
 
 namespace CapaPresentacion.Formularios.FormsPrincipales
 {
@@ -31,6 +32,11 @@ namespace CapaPresentacion.Formularios.FormsPrincipales
             this.btnCambiarRuta.Click += BtnCambiarRuta_Click;
             this.btnGuardarRuta.Click += BtnGuardarRuta_Click;
             this.btnGuardarServicio.Click += BtnGuardarServicio_Click;
+        }
+
+        private void ObtenerRutaImagenes()
+        {
+            this.txtRutaImagenes.Text = ConfigGeneral.Default.RutaImagenes;
         }
 
         private void ObtenerConfiguracionReportes()
@@ -67,10 +73,12 @@ namespace CapaPresentacion.Formularios.FormsPrincipales
         {
             try
             {
-                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                config.AppSettings.Settings["RUTAIMAGES"].Value = this.txtRutaImagenesNew.Text + "\\";
-                config.Save(ConfigurationSaveMode.Modified, true);
-                ConfigurationManager.RefreshSection("appSettings");
+                ConfigGeneral.Default.RutaImagenes = $"{this.txtRutaImagenesNew.Text}\\";
+                ConfigGeneral.Default.Save();
+                //Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                //config.AppSettings.Settings["RUTAIMAGES"].Value = this.txtRutaImagenesNew.Text + "\\";
+                //config.Save(ConfigurationSaveMode.Modified, true);
+                //ConfigurationManager.RefreshSection("appSettings");
                 Mensajes.MensajeOkForm("Se actualizó correctamente la ruta de imágenes");
             }
             catch (Exception ex)
@@ -235,6 +243,7 @@ namespace CapaPresentacion.Formularios.FormsPrincipales
             this.txtServicioStart.Visible_px = false;
 
             this.ObtenerConfiguracionReportes();
+            this.ObtenerRutaImagenes();
         }
 
         private List<string> ObtenerListaCadenasConexion()

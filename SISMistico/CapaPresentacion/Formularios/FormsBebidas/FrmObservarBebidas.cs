@@ -1,4 +1,5 @@
-﻿using CapaNegocio;
+﻿using CapaEntidades.Models;
+using CapaNegocio;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -37,6 +38,8 @@ namespace CapaPresentacion.Formularios.FormsBebidas
             }
         }
 
+        public event EventHandler OnEditBebida;
+
         private void DgvBebidas_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -48,8 +51,13 @@ namespace CapaPresentacion.Formularios.FormsBebidas
                     if (this.FrmAgregarBebidas != null)
                     {
                         int fila = this.dgvBebidas.CurrentRow.Cells[0].RowIndex;
-                        this.FrmAgregarBebidas.AsignarDatos
-                            (DatagridString.ReturnValuesOfCells(sender, fila, out rpta));
+                        if (this.OnEditBebida != null)
+                        {
+                            DataRow rowdt = (DataRow)row.DataBoundItem;
+                            Bebidas bebida = new Bebidas(rowdt);
+                            this.OnEditBebida.Invoke(bebida, e);
+                        }
+                     
                         this.Close();
                     }
                     else if (this.InactivarBebidas)
@@ -100,15 +108,14 @@ namespace CapaPresentacion.Formularios.FormsBebidas
                         "Se encontraron " + Tabla.Rows.Count + " bebidas";
                     string[] columns_header_text =
                     {
-                          "Id bebida", "Nombre", "Precio",
-                          "Precio trago", "Precio trago doble", "Precio proveedor",
-                          "Id proveedor", "Imagen", "Id Tipo", "Cantidad (Unidades)", "Cantidad por unidad", "Cantidad total", "Estado",
+                          "Id bebida", "Nombre", "Descripcion", "Precio",
+                            "Imagen", "Id Tipo", "Estado",
                           "Id tipo", "Tipo"
                     };
 
                     bool[] columns_visible =
 {
-                          false, true, true, false, false, false, false, false, false, true, true, true, false, false, true
+                          false, true, true, true, false, false, false, false, true
                     };
 
                     this.dgvBebidas =

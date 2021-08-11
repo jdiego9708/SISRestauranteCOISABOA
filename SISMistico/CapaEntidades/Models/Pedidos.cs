@@ -19,6 +19,7 @@ namespace CapaEntidades.Models
             try
             {
                 this.Id_pedido = Convert.ToInt32(row["Id_pedido"]);
+                this.Id_mesa = Convert.ToInt32(row["Id_mesa"]);
                 this.Mesa = new Mesas(row);
                 this.Id_empleado = Convert.ToInt32(row["Id_empleado"]);
                 this.Empleado = new Empleados(row);

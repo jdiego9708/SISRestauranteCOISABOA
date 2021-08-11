@@ -1171,34 +1171,12 @@ namespace CapaPresentacion.Formularios.FormsPrincipales
         {
             try
             {
-                FrmAgregarBebidas frm = new FrmAgregarBebidas
-                {
-                    TopLevel = false
-                };
                 FrmObservarBebidas frmObservar = new FrmObservarBebidas
                 {
-                    StartPosition = FormStartPosition.CenterScreen,
-                    FrmAgregarBebidas = frm
+                    StartPosition = FormStartPosition.CenterScreen
                 };
+                frmObservar.OnEditBebida += FrmObservar_OnEditBebida;
                 frmObservar.ShowDialog();
-
-                if (frm.Tag != null)
-                {
-                    Form FormComprobado = this.ComprobarExistencia(frm);
-                    if (FormComprobado != null)
-                    {
-                        frm.WindowState = FormWindowState.Normal;
-                        frm.Activate();
-                    }
-                    else
-                    {
-                        frm.FormBorderStyle = FormBorderStyle.Fixed3D;
-                        this.panel1.Controls.Add(frm);
-                        this.panel1.Tag = frm;
-                        frm.Show();
-                    }
-                }
-                frm.BringToFront();
             }
             catch (Exception ex)
             {
@@ -1207,11 +1185,38 @@ namespace CapaPresentacion.Formularios.FormsPrincipales
             }
         }
 
+        private void FrmObservar_OnEditBebida(object sender, EventArgs e)
+        {
+            Bebidas bebida = (Bebidas)sender;
+            FrmAddBebida frm = new FrmAddBebida
+            {
+                TopLevel = false,
+                Bebida = bebida,
+            };
+            if (frm.Tag != null)
+            {
+                Form FormComprobado = this.ComprobarExistencia(frm);
+                if (FormComprobado != null)
+                {
+                    frm.WindowState = FormWindowState.Normal;
+                    frm.Activate();
+                }
+                else
+                {
+                    frm.FormBorderStyle = FormBorderStyle.Fixed3D;
+                    this.panel1.Controls.Add(frm);
+                    this.panel1.Tag = frm;
+                    frm.Show();
+                }
+            }
+            frm.BringToFront();
+        }
+
         private void AgregarBebida_Click(object sender, EventArgs e)
         {
             try
             {
-                FrmAgregarBebidas frm = new FrmAgregarBebidas
+                FrmAddBebida frm = new FrmAddBebida
                 {
                     TopLevel = false
                 };
@@ -1233,8 +1238,8 @@ namespace CapaPresentacion.Formularios.FormsPrincipales
             }
             catch (Exception ex)
             {
-                Mensajes.MensajeErrorCompleto(this.Name, "AgregarBebida_Click",
-                    "Hubo un error con el menu agregar bebida", ex.Message);
+                Mensajes.MensajeErrorCompleto(this.Name, "FrmAddBebida",
+                    "Hubo un error con el menu FrmAddBebida", ex.Message);
             }
         }
 

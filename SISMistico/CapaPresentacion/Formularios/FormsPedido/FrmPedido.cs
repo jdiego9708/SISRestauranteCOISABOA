@@ -27,6 +27,8 @@
             this.Load += FrmPedido_Load;
         }
 
+        public event EventHandler OnMesasRefresh;
+
         private DialogResult Comprobacion()
         {
             FrmComprobacion frm = new FrmComprobacion
@@ -49,11 +51,11 @@
         }
 
         private bool Comprobaciones(out List<string> variablesPedido,
-            out DataTable dtDetallePedido,
+            out DataTable dtDetallePedidoPrint,
             out List<Detalle_ingredientes_pedido> listDetalleIngredientes)
         {
             //Asignar la tabla de los detalles
-            dtDetallePedido = new DataTable("DetallePedido");
+            dtDetallePedidoPrint = new DataTable("DetallePedido");
             //Asignar las variables del pedido, es decir los datos principales
             variablesPedido = new List<string>();
             //Asignar la lista de ingredientes del detalle del pedido
@@ -103,33 +105,33 @@
                 return false;
             }
 
-            dtDetallePedido.Columns.Add("Id_pedido", typeof(int));
-            dtDetallePedido.Columns.Add("Id_tipo", typeof(int));
-            dtDetallePedido.Columns.Add("Tipo", typeof(string));
-            dtDetallePedido.Columns.Add("Nombre", typeof(string));
-            dtDetallePedido.Columns.Add("Precio", typeof(decimal));
-            dtDetallePedido.Columns.Add("Cantidad", typeof(int));
-            dtDetallePedido.Columns.Add("Total", typeof(string));
-            dtDetallePedido.Columns.Add("Observaciones", typeof(string));
+            dtDetallePedidoPrint.Columns.Add("Id_pedido", typeof(int));
+            dtDetallePedidoPrint.Columns.Add("Id_tipo", typeof(int));
+            dtDetallePedidoPrint.Columns.Add("Tipo", typeof(string));
+            dtDetallePedidoPrint.Columns.Add("Nombre", typeof(string));
+            dtDetallePedidoPrint.Columns.Add("Precio", typeof(decimal));
+            dtDetallePedidoPrint.Columns.Add("Cantidad", typeof(int));
+            dtDetallePedidoPrint.Columns.Add("Total", typeof(string));
+            dtDetallePedidoPrint.Columns.Add("Observaciones", typeof(string));
 
             if (this.ProductsAddSelected != null)
             {
                 foreach (ProductBinding pr in this.ProductsAddSelected)
                 {
-                    DataRow newRow = dtDetallePedido.NewRow();
+                    DataRow newRowPrint = dtDetallePedidoPrint.NewRow();
 
                     if (this.IsEditar)
-                        newRow["Id_pedido"] = this.Pedido.Id_pedido;
+                        newRowPrint["Id_pedido"] = this.Pedido.Id_pedido;
                     else
-                        newRow["Id_pedido"] = 0;
+                        newRowPrint["Id_pedido"] = 0;
 
-                    newRow["Id_tipo"] = pr.Id_producto;
-                    newRow["Tipo"] = pr.Tipo_producto;
-                    newRow["Nombre"] = pr.Nombre;
-                    newRow["Precio"] = pr.Precio;
-                    newRow["Cantidad"] = pr.Cantidad;
-                    newRow["Total"] = pr.Cantidad * pr.Precio;
-                    newRow["Observaciones"] = pr.Observaciones;
+                    newRowPrint["Id_tipo"] = pr.Id_producto;
+                    newRowPrint["Tipo"] = pr.Tipo_producto;
+                    newRowPrint["Nombre"] = pr.Nombre;
+                    newRowPrint["Precio"] = pr.Precio;
+                    newRowPrint["Cantidad"] = pr.Cantidad;
+                    newRowPrint["Total"] = pr.Cantidad * pr.Precio;
+                    newRowPrint["Observaciones"] = pr.Observaciones;
 
                     //Agregamos la lista de detalles si es un plato
                     if (pr.Tipo_producto.Equals("PLATO"))
@@ -154,18 +156,18 @@
                                     };
 
                                     info.Append(de.Ingrediente.Nombre_ingrediente).Append(Environment.NewLine);
-                                    newRow["Nombre"] = info.ToString();
+                                    newRowPrint["Nombre"] = info.ToString();
                                     listDetalleIngredientes.Add(detail);
                                 }
                             }
                         }
                     }
 
-                    dtDetallePedido.Rows.Add(newRow);
+                    dtDetallePedidoPrint.Rows.Add(newRowPrint);
                 }
             }
             else
-                dtDetallePedido = null;
+                dtDetallePedidoPrint = null;
 
             return true;
         }
@@ -176,7 +178,7 @@
             {
                 MensajeEspera.ShowWait("Cargando...");
                 if (this.Comprobaciones(out List<string> variablesPedido,
-                                        out DataTable dtDetallePedido,
+                                        out DataTable dtDetallePedidoPrint,
                                         out List<Detalle_ingredientes_pedido> listDetalleIngredientes))
                 {
                     DatosInicioSesion datos = DatosInicioSesion.GetInstancia();
@@ -187,16 +189,26 @@
                     if (!this.IsEditar)
                     {
                         rpta = NPedido.InsertarPedido(variablesPedido,
-                           dtDetallePedido, out id_pedido, out DataTable dtDetallesCompleto);
+                           dtDetallePedidoPrint, out id_pedido, out DataTable dtDetallesCompleto);
                     }
                     else
                     {
                         id_pedido = this.Pedido.Id_pedido;
-                        if (dtDetallePedido != null)
+                        if (dtDetallePedidoPrint != null)
                         {
-                            foreach (DataRow row in dtDetallePedido.Rows)
+                            foreach (DataRow row in dtDetallePedidoPrint.Rows)
                             {
                                 Detalle_pedido de = new Detalle_pedido(row);
+
+                                //Encontrar la cantidad correcta
+                                List<ProductBinding> find =
+                                    this.ProductsSelected.Where(x => x.Id_producto == de.Id_tipo).ToList();
+                                if (find.Count > 0)
+                                {
+                                    ProductBinding pr = find[0];
+                                    de.Cantidad = pr.Cantidad;
+                                }
+
                                 rpta = NPedido.ActualizarDetallePedido(de, datos.EmpleadoClaveMaestra.Id_empleado, "");
                                 if (!rpta.Equals("OK"))
                                 {
@@ -233,15 +245,16 @@
                         if (!this.IsDomicilio)
                         {
                             FrmObservarMesas FrmObservarMesas = FrmObservarMesas.GetInstancia();
-                            FrmObservarMesas.ObtenerPedido(id_pedido, this.Numero_mesa, "PENDIENTE");
+                            FrmObservarMesas.LiberarMesa(this.Pedido.Id_mesa);
+                            FrmObservarMesas.CargarMesas();
                         }
 
                         if (this.IsEditar)
                         {
-                            if (dtDetallePedido != null)
+                            if (dtDetallePedidoPrint != null)
                             {
                                 this.frmComandas.Id_pedido = id_pedido;
-                                this.frmComandas.AsignarTablas(dtDetallePedido);
+                                this.frmComandas.AsignarTablas(dtDetallePedidoPrint);
                             }
                         }
                         else
@@ -430,6 +443,7 @@
                  * 1- Agregar +1 al producto en la lista existente**/
                 //productExisteAdd[0].Cantidad += 1;
                 //this.ProductsAddSelected.Add(productExiste[0]);
+                product.Cantidad += 1;
             }
             else
             {
@@ -711,7 +725,7 @@
                     {
                         if (Directory.Exists(nombreimagen))
                         {
-                            img = Imagenes.ObtenerImagen("RUTAIMAGES", nombreimagen, out string ruta_destino);
+                            img = Imagenes.ObtenerImagen(nombreimagen, out string _);
                         }
                         else
                         {
@@ -747,7 +761,7 @@
                         {
                             if (Directory.Exists(nombreimagen))
                             {
-                                img = Imagenes.ObtenerImagen("RUTAIMAGES", nombreimagen, out string ruta_destino);
+                                img = Imagenes.ObtenerImagen(nombreimagen, out string _);
                             }
                             else
                             {

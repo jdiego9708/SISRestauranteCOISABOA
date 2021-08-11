@@ -53,11 +53,15 @@ namespace CapaPresentacion.Formularios.FormsPedido
 
         private void BtnRemove_Click(object sender, EventArgs e)
         {
+            //this.Product.Cantidad--;
+
             this.OnBtnRemoveClick?.Invoke(this.Product, e);
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
+            //this.Product.Cantidad++;
+
             this.OnBtnAddClick?.Invoke(this.Product, e);
         }
 

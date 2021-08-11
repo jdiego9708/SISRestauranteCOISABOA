@@ -150,7 +150,7 @@ namespace CapaPresentacion.Formularios.FormsPedido
             }
         }
 
-        private void CargarMesas()
+        public void CargarMesas()
         {
             MensajeEspera.ShowWait("Cargando mesas");
             try

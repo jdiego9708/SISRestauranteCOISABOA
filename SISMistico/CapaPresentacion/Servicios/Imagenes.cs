@@ -9,16 +9,16 @@ using System.Drawing;
 using System.Configuration;
 using System.IO;
 using CapaPresentacion.Properties;
+using CapaPresentacion.Servicios;
 
 namespace CapaPresentacion
 {
     public class Imagenes
     { 
-        public static Image ObtenerImagen(string appKey,string nombre_imagen, out string ruta_destino)
+        public static Image ObtenerImagen(string nombre_imagen, out string ruta_destino)
         {
-            ruta_destino = 
-                Convert.ToString(ConfigurationManager.AppSettings[appKey]);
-            Image Imagen = null;
+            ruta_destino = ConfigGeneral.Default.RutaImagenes;
+            Image Imagen;
             try
             {
                 if (File.Exists(Path.Combine(ruta_destino, nombre_imagen)))
@@ -29,8 +29,7 @@ namespace CapaPresentacion
             }
             catch (Exception)
             {
-                Imagen = Image.FromFile(ruta_destino +
-                "AlmuerzoEspecial.jpg");
+                Imagen = Image.FromFile($"ruta_destino AlmuerzoEspecial.jpg");
             }
             return Imagen;
         }
