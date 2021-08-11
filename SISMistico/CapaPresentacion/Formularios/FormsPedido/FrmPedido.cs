@@ -245,7 +245,7 @@
                         if (!this.IsDomicilio)
                         {
                             FrmObservarMesas FrmObservarMesas = FrmObservarMesas.GetInstancia();
-                            FrmObservarMesas.LiberarMesa(this.Pedido.Id_mesa);
+                            FrmObservarMesas.LiberarMesa(this.MesaSelected.Id_mesa);
                             FrmObservarMesas.CargarMesas();
                         }
 
