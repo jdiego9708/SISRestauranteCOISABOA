@@ -44,23 +44,30 @@ namespace CapaPresentacion.Formularios.FormsPedido
             }
             else
             {
-                FrmRealizarPedido FrmPedido = new FrmRealizarPedido
+                DatosInicioSesion datos = DatosInicioSesion.GetInstancia();
+                FrmPedido FrmPedido = new FrmPedido
                 {
                     StartPosition = FormStartPosition.CenterScreen,
-                    Id_mesa = 0,
                     Numero_mesa = 0,
+                    Tipo_servicio = "DOMICILIO",
+                    EmpleadoSelected = datos.EmpleadoClaveMaestra,
+                    ClienteSelected = datos.ClienteDefault,
+                    MesaSelected = new Mesas
+                    {
+                        Id_mesa = 0,
+                        Num_mesa = 0,
+                        Descripcion_mesa = string.Empty,
+                    },
                     WindowState = FormWindowState.Maximized,
                     IsDomicilio = true,
                 };
-                FrmPedido.OnPedidoDomicilioSuccess += FrmPedido_OnPedidoDomicilioSuccess;
+                FrmPedido.OnPedidoSaveSuccess += FrmPedido_OnPedidoSaveSuccess;
                 FrmPedido.ShowDialog();
             }
         }
 
-        private void FrmPedido_OnPedidoDomicilioSuccess(object sender, EventArgs e)
+        private void FrmPedido_OnPedidoSaveSuccess(object sender, EventArgs e)
         {
-            int id_pedido = (int)sender;
-
             if (this.PedidosDomicilios == null)
                 this.PedidosDomicilios = new List<Pedidos>();
 
@@ -251,8 +258,15 @@ namespace CapaPresentacion.Formularios.FormsPedido
                 StartPosition = FormStartPosition.CenterScreen,
                 IsPrecuenta = false
             };
+            facturarPedido.OnFacturarPedidoSuccess += FacturarPedido_OnFacturarPedidoSuccess;
             facturarPedido.ObtenerPedido(pedido.Id_pedido);
             facturarPedido.Show();
+        }
+
+        private void FacturarPedido_OnFacturarPedidoSuccess(object sender, EventArgs e)
+        {
+            Pedidos pedido = (Pedidos)sender;
+            this.LiberarMesa(pedido.Id_mesa);
         }
 
         private void ButtonMesa_OnBtnEditarPedidoClick(object sender, EventArgs e)

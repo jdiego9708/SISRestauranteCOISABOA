@@ -62,29 +62,33 @@ namespace CapaPresentacion.Formularios.FormsPedido
 
         private void BtnAddProductos_Click(object sender, EventArgs e)
         {
-            //Quiere decir que va a agregar más productos
-            if (this.Pedido.Estado_pedido.Equals("PENDIENTE"))
+            DatosInicioSesion datos = DatosInicioSesion.GetInstancia();
+            FrmPedido FrmPedido = new FrmPedido
             {
-                FrmRealizarPedido FrmPedido = new FrmRealizarPedido
+                StartPosition = FormStartPosition.CenterScreen,
+                Numero_mesa = 0,
+                Tipo_servicio = "DOMICILIO",
+                EmpleadoSelected = datos.EmpleadoClaveMaestra,
+                ClienteSelected = datos.ClienteDefault,              
+                MesaSelected = new Mesas
                 {
-                    StartPosition = FormStartPosition.CenterScreen,
-                    Id_mesa = this.Pedido.Id_mesa,
-                    Numero_mesa = 0,
-                    Id_empleado = this.Pedido.Id_empleado,
-                    Id_pedido = this.Pedido.Id_pedido,
-                    IsEditar = true,
-                    IsDomicilio = true,
-                };
-                FrmPedido.ShowDialog();
-                if (FrmPedido.DialogResult == DialogResult.OK)
-                {
-                    this.AsignarDatos(this.Pedido);
-                }
-                else
-                {
-                    this.AsignarDatos(this.Pedido);
-                }
-            }
+                    Id_mesa = 0,
+                    Num_mesa = 0,
+                    Descripcion_mesa = string.Empty,
+                },
+                WindowState = FormWindowState.Maximized,
+                Pedido = this.Pedido,
+                IsDomicilio = true,
+                IsEditar = true,
+            };
+            FrmPedido.OnPedidoSaveSuccess += FrmPedido_OnPedidoSaveSuccess;
+            FrmPedido.ShowDialog();
+        }
+
+        private void FrmPedido_OnPedidoSaveSuccess(object sender, EventArgs e)
+        {
+            Pedidos pedido = (Pedidos)sender;
+            this.AsignarDatos(pedido);
         }
 
         private void BtnPrint_Click(object sender, EventArgs e)

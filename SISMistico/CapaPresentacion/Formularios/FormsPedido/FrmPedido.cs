@@ -2,8 +2,10 @@
 {
     using CapaEntidades.Models;
     using CapaNegocio;
+    using CapaPresentacion.Formularios.FormsClientes;
     using CapaPresentacion.Formularios.FormsPedido.Platos;
     using CapaPresentacion.Properties;
+    using CapaPresentacion.Servicios;
     using System;
     using System.Collections.Generic;
     using System.Data;
@@ -25,9 +27,26 @@
             this.btnBebidas.Click += BtnBebidas_Click;
             this.btnSave.Click += BtnSave_Click;
             this.Load += FrmPedido_Load;
+            this.btnSelectClient.Click += BtnSelectClient_Click;
         }
 
-        public event EventHandler OnMesasRefresh;
+        private void BtnSelectClient_Click(object sender, EventArgs e)
+        {
+            FrmObservarClientes frm = new FrmObservarClientes
+            {
+                StartPosition = FormStartPosition.CenterScreen,
+            };
+            frm.OnClientSelected += Frm_OnClientSelected;
+            frm.ShowDialog();
+        }
+
+        private void Frm_OnClientSelected(object sender, EventArgs e)
+        {
+            Clientes cliente = (Clientes)sender;
+            this.ClienteSelected = cliente;
+        }
+
+        public event EventHandler OnPedidoSaveSuccess;
 
         private DialogResult Comprobacion()
         {
@@ -248,6 +267,8 @@
                             FrmObservarMesas.LiberarMesa(this.MesaSelected.Id_mesa);
                             FrmObservarMesas.CargarMesas();
                         }
+                        else
+                            this.OnPedidoSaveSuccess?.Invoke(this.Pedido, e);
 
                         if (this.IsEditar)
                         {
@@ -443,7 +464,7 @@
                  * 1- Agregar +1 al producto en la lista existente**/
                 //productExisteAdd[0].Cantidad += 1;
                 //this.ProductsAddSelected.Add(productExiste[0]);
-                product.Cantidad += 1;
+                //product.Cantidad += 1;
             }
             else
             {
@@ -546,7 +567,23 @@
                 this.panelPedido.clearDataSource();
                 StringBuilder info = new StringBuilder();
                 info.Append("Fecha y hora: ").Append(DateTime.Now.ToLongDateString());
-                info.Append(" " + DateTime.Now.ToLongTimeString()).Append(Environment.NewLine);
+                info.Append(" " + DateTime.Now.ToLongTimeString()).Append(" | ");
+
+                if (this.ClienteSelected.Id_cliente != 0)
+                {
+                    info.Append("Cliente: ").Append(this.ClienteSelected.Nombre_cliente).Append(" - ");
+                    info.Append("Teléfono: ").Append(this.ClienteSelected.Telefono_cliente).Append(" - ");
+                    info.Append("Dirección: ").Append(this.ClienteSelected.Direccion_cliente).Append(" - ");
+                    info.Append("Referencia: ").Append(this.ClienteSelected.Referencia_ubicacion);
+
+                    if (!string.IsNullOrEmpty(this.ClienteSelected.Otras_observaciones))
+                        info.Append(" - Otras observaciones: ").Append(this.ClienteSelected.Otras_observaciones);
+
+                    info.Append(" | ");
+                }
+                else
+                    info.Append("Sin cliente seleccionado: ").Append(" | ");
+
                 if (products != null)
                 {
                     decimal subtotal = 0;
@@ -611,6 +648,7 @@
                             Observaciones = string.Empty,
                             Cantidad = 0,
                             Product = plato,
+                            NombreImagen = plato.Imagen_plato,
                         };
 
                         ProductoItem productoItem = new ProductoItem
@@ -671,6 +709,7 @@
                             Observaciones = string.Empty,
                             Cantidad = 0,
                             Product = bebida,
+                            NombreImagen = bebida.Imagen,
                         };
 
                         ProductoItem productoItem = new ProductoItem
@@ -720,10 +759,16 @@
                 if (control is ProductoItem product)
                 {
                     Image img;
+
                     string nombreimagen = product.Product.NombreImagen;
+                    string rutaImagenes = ConfigGeneral.Default.RutaImagenes;
+
                     if (!string.IsNullOrEmpty(nombreimagen))
                     {
-                        if (Directory.Exists(nombreimagen))
+                        DirectoryInfo DirectoryInfo = new DirectoryInfo(rutaImagenes);
+                        string destino = Path.Combine(DirectoryInfo.ToString(), nombreimagen);
+
+                        if (File.Exists(destino))
                         {
                             img = Imagenes.ObtenerImagen(nombreimagen, out string _);
                         }
@@ -757,9 +802,14 @@
                     {
                         Image img;
                         string nombreimagen = product.Product.NombreImagen;
+                        string rutaImagenes = ConfigGeneral.Default.RutaImagenes;
+
+                        DirectoryInfo DirectoryInfo = new DirectoryInfo(rutaImagenes);
+                        string destino = Path.Combine(DirectoryInfo.ToString(), nombreimagen);
+
                         if (!string.IsNullOrEmpty(nombreimagen))
                         {
-                            if (Directory.Exists(nombreimagen))
+                            if (File.Exists(destino))
                             {
                                 img = Imagenes.ObtenerImagen(nombreimagen, out string _);
                             }
@@ -1114,7 +1164,10 @@
             set
             {
                 _tipo_servicio = value;
-                this.lblTitulo.Text = "Nuevo pedido para la mesa " + Numero_mesa;
+                if (value.Equals("DOMICILIO"))                
+                    this.lblTitulo.Text = "Nuevo domicilio";
+                else
+                    this.lblTitulo.Text = "Nuevo pedido para la mesa " + Numero_mesa;
             }
         }
 

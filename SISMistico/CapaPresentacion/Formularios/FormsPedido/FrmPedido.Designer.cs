@@ -49,6 +49,7 @@ namespace CapaPresentacion.Formularios.FormsPedido
             this.chkPrintComandas = new System.Windows.Forms.CheckBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtInfoPedido = new System.Windows.Forms.TextBox();
+            this.btnSelectClient = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panelBanner.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -229,6 +230,7 @@ namespace CapaPresentacion.Formularios.FormsPedido
             // 
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.btnSelectClient);
             this.groupBox5.Controls.Add(this.gbNumClientes);
             this.groupBox5.Controls.Add(this.chkPrintComandas);
             this.groupBox5.Controls.Add(this.btnSave);
@@ -306,14 +308,31 @@ namespace CapaPresentacion.Formularios.FormsPedido
             this.txtInfoPedido.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtInfoPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInfoPedido.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtInfoPedido.Location = new System.Drawing.Point(250, 22);
+            this.txtInfoPedido.Location = new System.Drawing.Point(306, 19);
             this.txtInfoPedido.Multiline = true;
             this.txtInfoPedido.Name = "txtInfoPedido";
             this.txtInfoPedido.ReadOnly = true;
             this.txtInfoPedido.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtInfoPedido.Size = new System.Drawing.Size(189, 54);
+            this.txtInfoPedido.Size = new System.Drawing.Size(133, 54);
             this.txtInfoPedido.TabIndex = 0;
             this.txtInfoPedido.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnSelectClient
+            // 
+            this.btnSelectClient.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSelectClient.BackgroundImage")));
+            this.btnSelectClient.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSelectClient.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSelectClient.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnSelectClient.FlatAppearance.BorderSize = 0;
+            this.btnSelectClient.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.btnSelectClient.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnSelectClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelectClient.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectClient.Location = new System.Drawing.Point(250, 23);
+            this.btnSelectClient.Name = "btnSelectClient";
+            this.btnSelectClient.Size = new System.Drawing.Size(50, 50);
+            this.btnSelectClient.TabIndex = 29;
+            this.btnSelectClient.UseVisualStyleBackColor = true;
             // 
             // FrmPedido
             // 
@@ -368,5 +387,6 @@ namespace CapaPresentacion.Formularios.FormsPedido
         private System.Windows.Forms.CheckBox chkPrintComandas;
         private System.Windows.Forms.GroupBox gbNumClientes;
         private System.Windows.Forms.NumericUpDown numericClientes;
+        private System.Windows.Forms.Button btnSelectClient;
     }
 }

@@ -112,11 +112,11 @@ namespace CapaPresentacion.Formularios.FormsPedido
 
         private void FacturarPedido_OnFacturarPedidoSuccess(object sender, EventArgs e)
         {
-            int id_pedido = (int)sender;
+            Pedidos pedido = (Pedidos)sender;
 
             string rpta = NPedido.CambiarEstadoPedido(new List<string>
             {
-                id_pedido.ToString(),
+                pedido.Id_pedido.ToString(),
                 "DISPONIBLE",
                 "0",
             });
@@ -130,28 +130,35 @@ namespace CapaPresentacion.Formularios.FormsPedido
 
         private void BtnAddDomicilio_Click(object sender, EventArgs e)
         {
-            FrmRealizarPedido FrmPedido = new FrmRealizarPedido
+            DatosInicioSesion datos = DatosInicioSesion.GetInstancia();
+            FrmPedido FrmPedido = new FrmPedido
             {
                 StartPosition = FormStartPosition.CenterScreen,
-                Id_mesa = 0,
                 Numero_mesa = 0,
+                Tipo_servicio = "DOMICILIO",
+                EmpleadoSelected = datos.EmpleadoClaveMaestra,
+                ClienteSelected = datos.ClienteDefault,
+                MesaSelected = new Mesas
+                {
+                    Id_mesa = 0,
+                    Num_mesa = 0,
+                    Descripcion_mesa = string.Empty,
+                },
                 WindowState = FormWindowState.Maximized,
                 IsDomicilio = true,
             };
-            FrmPedido.OnPedidoDomicilioSuccess += FrmPedido_OnPedidoDomicilioSuccess;
+            FrmPedido.OnPedidoSaveSuccess += FrmPedido_OnPedidoSaveSuccess;
             FrmPedido.ShowDialog();
+            //FrmPedido.OnPedidoDomicilioSuccess += FrmPedido_OnPedidoDomicilioSuccess;
         }
 
-        private void FrmPedido_OnPedidoDomicilioSuccess(object sender, EventArgs e)
+        private void FrmPedido_OnPedidoSaveSuccess(object sender, EventArgs e)
         {
             this.rdEnCurso.Checked = true;
             this.BuscarPedidos("DOMICILIOS PENDIENTES", DateTime.Now.ToString("yyyy-MM-dd"));
-
             FrmObservarMesas frmObservarMesas = FrmObservarMesas.GetInstancia();
             if (frmObservarMesas != null)
             {
-                int id_pedido = (int)sender;
-
                 if (frmObservarMesas.PedidosDomicilios == null)
                     frmObservarMesas.PedidosDomicilios = new List<Pedidos>();
 

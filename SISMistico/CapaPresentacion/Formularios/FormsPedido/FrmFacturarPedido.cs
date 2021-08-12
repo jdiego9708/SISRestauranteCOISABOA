@@ -1,4 +1,5 @@
-﻿using CapaNegocio;
+﻿using CapaEntidades.Models;
+using CapaNegocio;
 using CapaPresentacion.Formularios.FormsEmpleados;
 using System;
 using System.Collections.Generic;
@@ -161,7 +162,7 @@ namespace CapaPresentacion.Formularios.FormsPedido
 
                                 MensajeEspera.CloseForm();
                                 Mensajes.MensajeOkForm("Se realizó la precuenta correctamente");
-                                this.OnFacturarPedidoSuccess?.Invoke(this.Id_pedido, e);
+                                this.OnFacturarPedidoSuccess?.Invoke(this.Pedido, e);
                                 this.Close();
                             }
                             else
@@ -184,7 +185,8 @@ namespace CapaPresentacion.Formularios.FormsPedido
                                     else if (metodo.Equals("CORREO"))
                                     {
                                         string rpta_email =
-                                            EmailFactura.SendEmailFactura(this.Id_pedido, this.Correo_electronico);
+                                            EmailFactura.SendEmailFactura(this.Pedido.Id_pedido, 
+                                            this.Correo_electronico);
                                         if (!rpta_email.Equals("OK"))
                                         {
                                             MensajeEspera.CloseForm();
@@ -429,5 +431,9 @@ namespace CapaPresentacion.Formularios.FormsPedido
                 _isDomicilio = value;
             }
         }
+
+        public Pedidos Pedido { get => _pedido; set => _pedido = value; }
+
+        private Pedidos _pedido;
     }
 }

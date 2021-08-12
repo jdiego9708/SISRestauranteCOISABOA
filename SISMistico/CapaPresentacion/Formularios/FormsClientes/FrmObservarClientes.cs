@@ -1,4 +1,5 @@
-﻿using CapaNegocio;
+﻿using CapaEntidades.Models;
+using CapaNegocio;
 using CapaPresentacion.Formularios.FormsPedido;
 using System;
 using System.Data;
@@ -23,6 +24,7 @@ namespace CapaPresentacion.Formularios.FormsClientes
         }
 
         public event EventHandler OnDgvDoubleClick;
+        public event EventHandler OnClientSelected;
 
         private void TxtBusqueda_onPxClick(object sender, EventArgs e)
         {
@@ -107,6 +109,15 @@ namespace CapaPresentacion.Formularios.FormsClientes
                     }
 
                     this.OnDgvDoubleClick?.Invoke(row, e);
+
+                    if (this.OnClientSelected != null)
+                    {
+                        DataRow rowClient = ((DataRowView)row.DataBoundItem).Row;
+
+                        Clientes cliente = new Clientes(rowClient);
+                        this.OnClientSelected(cliente, e);
+                        rpta = "OK";
+                    }
 
                     if (rpta.Equals("OK"))
                     {

@@ -209,10 +209,10 @@ namespace CapaPresentacion.Formularios.FormsPedido
                     HTMLTemplateMail = concatTemplateEmailWithHeaderBody(headerEmail.ToString(), contentEmail.ToString());
 
                     MailMessage mail = new MailMessage(ConfigurationManager.AppSettings["eMailFrom"], correo);
-                    mail.From = new MailAddress(ConfigurationManager.AppSettings["eMailFrom"], "Restaurante Tio Pepe", System.Text.Encoding.UTF8);
+                    mail.From = new MailAddress(ConfigurationManager.AppSettings["eMailFrom"], "COISA BOA Resto", Encoding.UTF8);
                     mail.IsBodyHtml = true;
                     string fecha = DateTime.Now.ToString("G");
-                    mail.Subject = "Factura TIO PEPE" + " - " + fecha;
+                    mail.Subject = "Factura COISA BOA" + " - " + fecha;
                     mail.Body = HTMLTemplateMail;
                     //Línea para enviar una copia del correo
                     //mail.Bcc.Add(ConfigurationManager.AppSettings["eMail"].ToString());

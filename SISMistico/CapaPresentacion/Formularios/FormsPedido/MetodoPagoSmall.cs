@@ -32,6 +32,14 @@ namespace CapaPresentacion.Formularios.FormsPedido
                     this.txtValor.Text = this.Total.ToString("C");
                 }
             }
+            else
+            {
+                if (chk.Text.Equals("EFECTIVO"))
+                {
+                    this.txtValor.Tag = 0;
+                    this.txtValor.Text = 0.ToString("C");
+                }
+            }
         }
 
         private void Txt_KeyPress(object sender, KeyPressEventArgs e)

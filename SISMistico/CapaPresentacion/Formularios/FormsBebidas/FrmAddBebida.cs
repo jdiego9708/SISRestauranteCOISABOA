@@ -72,7 +72,9 @@ namespace CapaPresentacion.Formularios.FormsBebidas
             bebida.Imagen = 
                 string.IsNullOrEmpty(this.uploadImage1.Nombre_imagen) ? 
                 "SIN IMAGEN" : this.uploadImage1.Nombre_imagen;
-            
+            bebida.RutaImagen =
+                this.uploadImage1.Ruta_origen;
+
             return true;
         }
 
@@ -115,7 +117,7 @@ namespace CapaPresentacion.Formularios.FormsBebidas
                         //Guardar imágenes
                         rpta = ArchivosAdjuntos.GuardarArchivo(this.Bebida.Id_bebida, "rutaImages",
                             this.uploadImage1.Nombre_imagen,
-                            this.uploadImage1.Ruta_origen);
+                            this.Bebida.RutaImagen);
 
                         if(rpta.Equals("OK"))
                             Mensajes.MensajeOkForm("Se actualizó la bebida correctamente");

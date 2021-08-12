@@ -67,11 +67,13 @@ namespace CapaPresentacion.Formularios.FormsPedido
             this.txtInformacion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInformacion.BackColor = System.Drawing.Color.White;
             this.txtInformacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtInformacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtInformacion.Location = new System.Drawing.Point(6, 20);
             this.txtInformacion.Multiline = true;
             this.txtInformacion.Name = "txtInformacion";
+            this.txtInformacion.ReadOnly = true;
             this.txtInformacion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtInformacion.Size = new System.Drawing.Size(400, 189);
             this.txtInformacion.TabIndex = 2;
