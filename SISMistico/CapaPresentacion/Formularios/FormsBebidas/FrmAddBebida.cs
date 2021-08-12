@@ -69,8 +69,10 @@ namespace CapaPresentacion.Formularios.FormsBebidas
             bebida.Nombre_bebida = this.txtNombre.Text;
             bebida.Descripcion_bebida = this.txtDescripcion.Text;
             bebida.Estado = "ACTIVO";
-            bebida.Imagen = this.uploadImage1.Nombre_imagen;
-
+            bebida.Imagen = 
+                string.IsNullOrEmpty(this.uploadImage1.Nombre_imagen) ? 
+                "SIN IMAGEN" : this.uploadImage1.Nombre_imagen;
+            
             return true;
         }
 
@@ -87,29 +89,39 @@ namespace CapaPresentacion.Formularios.FormsBebidas
                     if (this.IsEditar)
                     {
                         rpta = NBebidas.EditarBebida(new List<string>
-                    {
-                        this.Bebida.Id_bebida.ToString(),
-                        this.Bebida.Nombre_bebida,
-                        this.Bebida.Precio_bebida.ToString("N2"),
-                        this.Bebida.Imagen,
-                        this.Bebida.Id_tipo_bebida.ToString(),
-                    });
+                        {
+                            this.Bebida.Id_bebida.ToString(),
+                            this.Bebida.Nombre_bebida,
+                            this.Bebida.Precio_bebida.ToString("N2"),
+                            this.Bebida.Imagen,
+                            this.Bebida.Id_tipo_bebida.ToString(),
+                        });
                     }
                     else
                     {
                         rpta = NBebidas.InsertarBebida(new List<string>
-                    {
-                        this.Bebida.Nombre_bebida,
-                        this.Bebida.Descripcion_bebida,
-                        this.Bebida.Precio_bebida.ToString("N2"),
-                        this.Bebida.Imagen,
-                        this.Bebida.Id_tipo_bebida.ToString(),
-                    }, out int _);
+                        {
+                            this.Bebida.Nombre_bebida,
+                            this.Bebida.Descripcion_bebida,
+                            this.Bebida.Precio_bebida.ToString("N2"),
+                            this.Bebida.Imagen,
+                            this.Bebida.Id_tipo_bebida.ToString(),
+                        }, out int id_bebida);
+                        this.Bebida.Id_bebida = id_bebida;
                     }
 
                     if (rpta.Equals("OK"))
                     {
-                        Mensajes.MensajeOkForm("Se actualizó la bebida correctamente");
+                        //Guardar imágenes
+                        rpta = ArchivosAdjuntos.GuardarArchivo(this.Bebida.Id_bebida, "rutaImages",
+                            this.uploadImage1.Nombre_imagen,
+                            this.uploadImage1.Ruta_origen);
+
+                        if(rpta.Equals("OK"))
+                            Mensajes.MensajeOkForm("Se actualizó la bebida correctamente");
+                        else
+                            Mensajes.MensajeOkForm("Se actualizó la bebida correctamente pero no se guardó su imagen");
+
                         this.Close();
                     }
                     else

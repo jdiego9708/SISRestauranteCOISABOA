@@ -128,19 +128,15 @@ namespace CapaDatos
 
                 //Ejecutamos nuestro comando
                 //Se puede ejecutar este metodo pero ya tenemos el mensaje que devuelve sql
-                rpta = SqlCmd.ExecuteNonQuery() >= 1 ? "OK" : "NO se Ingreso el Registro";
+                rpta = SqlCmd.ExecuteNonQuery() >= 1 ? "OK" : "NO se ingreso el registro";
 
                 if (rpta != "OK")
                 {
                     if (this.Mensaje_respuesta != null)
-                    {
-                        rpta = this.Mensaje_respuesta;
-                    }
+                        rpta = this.Mensaje_respuesta;                   
                 }
                 else
-                {
                     id_bebida = Convert.ToInt32(SqlCmd.Parameters["@Id_bebida"].Value);
-                }
             }
             //Mostramos posible error que tengamos
             catch (SqlException ex)
@@ -221,7 +217,7 @@ namespace CapaDatos
                 };
                 SqlCmd.Parameters.Add(Precio_bebida);
                 contador += 1;
-               
+
                 SqlParameter Imagen = new SqlParameter
                 {
                     ParameterName = "@Imagen",

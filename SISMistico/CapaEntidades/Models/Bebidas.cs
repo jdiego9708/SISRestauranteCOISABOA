@@ -38,6 +38,8 @@ namespace CapaEntidades.Models
 
         public string Imagen { get; set; }
 
+        public string RutaImagen { get; set; }
+
         public int Id_tipo_bebida { get; set; }
 
         public string Estado { get; set; }

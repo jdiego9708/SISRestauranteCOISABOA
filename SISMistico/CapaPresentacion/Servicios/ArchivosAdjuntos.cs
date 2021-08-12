@@ -9,6 +9,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Configuration;
+using CapaPresentacion.Servicios;
 
 namespace CapaPresentacion
 {
@@ -53,10 +54,9 @@ namespace CapaPresentacion
         public static string ObtenerRutaDestino(string appKey)
         {
             string ruta = "";
-            var appSettings = ConfigurationManager.AppSettings;
             try
             {
-                ruta = Convert.ToString(appSettings[appKey]);
+                ruta = ConfigGeneral.Default.RutaImagenes;
             }
             catch (ConfigurationErrorsException ex)
             {
