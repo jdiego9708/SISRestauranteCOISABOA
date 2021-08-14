@@ -172,7 +172,7 @@ namespace CapaPresentacion.Formularios.FormsPedido
                                 if (rpta.Equals("OK"))
                                 {
                                     FrmObservarMesas frm = FrmObservarMesas.GetInstancia();
-                                    frm.LiberarMesa(this.Id_mesa);
+                                    frm.LiberarMesa(this.Pedido.Id_mesa);
                                     MensajeEspera.CloseForm();
                                     frmFacturaFinal.Id_pedido = this.Id_pedido;
                                     frmFacturaFinal.AsignarTablas();
@@ -207,7 +207,7 @@ namespace CapaPresentacion.Formularios.FormsPedido
 
                                     MensajeEspera.CloseForm();
                                     Mensajes.MensajeOkForm("Se realizó la facturación correctamente");
-                                    this.OnFacturarPedidoSuccess?.Invoke(this.Id_pedido, e);
+                                    this.OnFacturarPedidoSuccess?.Invoke(this.Pedido, e);
                                     this.Close();
                                 }
                                 else

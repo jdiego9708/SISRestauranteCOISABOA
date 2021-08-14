@@ -256,7 +256,9 @@ namespace CapaPresentacion.Formularios.FormsPedido
             FrmFacturarPedido facturarPedido = new FrmFacturarPedido
             {
                 StartPosition = FormStartPosition.CenterScreen,
-                IsPrecuenta = false
+                IsPrecuenta = false,
+                Pedido = pedido,
+                Id_pedido = pedido.Id_pedido,
             };
             facturarPedido.OnFacturarPedidoSuccess += FacturarPedido_OnFacturarPedidoSuccess;
             facturarPedido.ObtenerPedido(pedido.Id_pedido);
@@ -266,7 +268,7 @@ namespace CapaPresentacion.Formularios.FormsPedido
         private void FacturarPedido_OnFacturarPedidoSuccess(object sender, EventArgs e)
         {
             Pedidos pedido = (Pedidos)sender;
-            this.LiberarMesa(pedido.Id_mesa);
+            //this.LiberarMesa(pedido.Id_mesa);
         }
 
         private void ButtonMesa_OnBtnEditarPedidoClick(object sender, EventArgs e)
