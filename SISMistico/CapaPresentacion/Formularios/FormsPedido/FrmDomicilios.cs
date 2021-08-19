@@ -103,6 +103,7 @@ namespace CapaPresentacion.Formularios.FormsPedido
                     StartPosition = FormStartPosition.CenterScreen,
                     IsPrecuenta = false,
                     IsDomicilio = true,
+                    Pedido = pedido,
                 };
                 facturarPedido.ObtenerPedido(pedido.Id_pedido);
                 facturarPedido.OnFacturarPedidoSuccess += FacturarPedido_OnFacturarPedidoSuccess;
